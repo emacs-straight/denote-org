@@ -1,4 +1,4 @@
-This is docYFmKPS.info, produced by makeinfo version 6.8 from
+This is doctWwhFe.info, produced by makeinfo version 6.8 from
 denote-org.texi.
 
 Copyright (C) 2022-2025 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docYFmKPS.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: doctWwhFe.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 denote-org: Extensions to better integrate Org with Denote
 **********************************************************
@@ -98,7 +98,7 @@ Indices
 
 
 
-File: docYFmKPS.info,  Node: Overview,  Next: Use Org dynamic blocks,  Prev: Top,  Up: Top
+File: doctWwhFe.info,  Node: Overview,  Next: Use Org dynamic blocks,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -114,7 +114,7 @@ blocks, links to headings, and splitting an Org subtree into its own
 standalone file.  The following sections cover the technicalities.
 
 
-File: docYFmKPS.info,  Node: Use Org dynamic blocks,  Next: Create a note from the current Org subtree,  Prev: Overview,  Up: Top
+File: doctWwhFe.info,  Node: Use Org dynamic blocks,  Next: Create a note from the current Org subtree,  Prev: Overview,  Up: Top
 
 2 Use Org dynamic blocks
 ************************
@@ -154,7 +154,7 @@ Evaluate:
 * Org dynamic block to insert Org files as headings::
 
 
-File: docYFmKPS.info,  Node: Org dynamic blocks to insert links,  Next: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
+File: doctWwhFe.info,  Node: Org dynamic blocks to insert links,  Next: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
 
 2.1 Org dynamic blocks to insert links
 ======================================
@@ -242,7 +242,7 @@ block.  We cover that case as well (*note The Org dynamic block to
 insert missing links only::).
 
 
-File: docYFmKPS.info,  Node: The Org dynamic block to insert missing links only,  Next: The Org dynamic block to insert backlinks,  Prev: Org dynamic blocks to insert links,  Up: Use Org dynamic blocks
+File: doctWwhFe.info,  Node: The Org dynamic block to insert missing links only,  Next: The Org dynamic block to insert backlinks,  Prev: Org dynamic blocks to insert links,  Up: Use Org dynamic blocks
 
 2.2 The Org dynamic block to insert missing links only
 ======================================================
@@ -265,7 +265,7 @@ the command ‘org-dynamic-block-insert-dblock’.
 the ‘#+BEGIN’ line to update the block.
 
 
-File: docYFmKPS.info,  Node: The Org dynamic block to insert backlinks,  Next: Org dynamic block to insert file contents,  Prev: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
+File: doctWwhFe.info,  Node: The Org dynamic block to insert backlinks,  Next: Org dynamic block to insert file contents,  Prev: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
 
 2.3 The Org dynamic block to insert backlinks
 =============================================
@@ -301,7 +301,7 @@ the heading (*note Insert link to an Org file with a further pointer to
 a heading::).
 
 
-File: docYFmKPS.info,  Node: Org dynamic block to insert file contents,  Next: Org dynamic block to insert Org files as headings,  Prev: The Org dynamic block to insert backlinks,  Up: Use Org dynamic blocks
+File: doctWwhFe.info,  Node: Org dynamic block to insert file contents,  Next: Org dynamic block to insert Org files as headings,  Prev: The Org dynamic block to insert backlinks,  Up: Use Org dynamic blocks
 
 2.4 Org dynamic block to insert file contents
 =============================================
@@ -415,7 +415,7 @@ parameters, which are described further below:
      purview).
 
 
-File: docYFmKPS.info,  Node: Org dynamic block to insert Org files as headings,  Prev: Org dynamic block to insert file contents,  Up: Use Org dynamic blocks
+File: doctWwhFe.info,  Node: Org dynamic block to insert Org files as headings,  Prev: Org dynamic block to insert file contents,  Up: Use Org dynamic blocks
 
 2.5 Org dynamic block to insert Org files as headings
 =====================================================
@@ -504,7 +504,7 @@ included:
      purview).
 
 
-File: docYFmKPS.info,  Node: Create a note from the current Org subtree,  Next: Insert link to an Org file with a further pointer to a heading,  Prev: Use Org dynamic blocks,  Up: Top
+File: doctWwhFe.info,  Node: Create a note from the current Org subtree,  Next: Insert link to an Org file with a further pointer to a heading,  Prev: Use Org dynamic blocks,  Up: Top
 
 3 Create a note from the current Org subtree
 ********************************************
@@ -557,7 +557,7 @@ prompts for a date at this stage (also see
 ‘denote-file-type’.
 
 
-File: docYFmKPS.info,  Node: Insert link to an Org file with a further pointer to a heading,  Next: Convert denote links to file links in Org and vice versa,  Prev: Create a note from the current Org subtree,  Up: Top
+File: doctWwhFe.info,  Node: Insert link to an Org file with a further pointer to a heading,  Next: Convert denote links to file links in Org and vice versa,  Prev: Create a note from the current Org subtree,  Up: Top
 
 4 Insert link to an Org file with a further pointer to a heading
 ****************************************************************
@@ -594,7 +594,7 @@ heading (*note Backlinks for Org headings::).
 * Backlinks for Org headings::
 
 
-File: docYFmKPS.info,  Node: Backlinks for Org headings,  Up: Insert link to an Org file with a further pointer to a heading
+File: doctWwhFe.info,  Node: Backlinks for Org headings,  Up: Insert link to an Org file with a further pointer to a heading
 
 4.1 Backlinks for Org headings
 ==============================
@@ -610,7 +610,7 @@ also an option (*note Org dynamic blocks to insert links or backlinks:
 Org dynamic blocks to insert links.).
 
 
-File: docYFmKPS.info,  Node: Convert denote links to file links in Org and vice versa,  Next: Installation,  Prev: Insert link to an Org file with a further pointer to a heading,  Up: Top
+File: doctWwhFe.info,  Node: Convert denote links to file links in Org and vice versa,  Next: Installation,  Prev: Insert link to an Org file with a further pointer to a heading,  Up: Top
 
 5 Convert ‘denote:’ links to ‘file:’ links in Org and vice versa
 ****************************************************************
@@ -641,7 +641,7 @@ Convert ‘file:’ links to ‘denote:’ links
      path and converts it into its identifier.
 
 
-File: docYFmKPS.info,  Node: Installation,  Next: Sample configuration,  Prev: Convert denote links to file links in Org and vice versa,  Up: Top
+File: doctWwhFe.info,  Node: Installation,  Next: Sample configuration,  Prev: Convert denote links to file links in Org and vice versa,  Up: Top
 
 6 Installation
 **************
@@ -652,7 +652,7 @@ File: docYFmKPS.info,  Node: Installation,  Next: Sample configuration,  Prev: C
 * Manual installation::
 
 
-File: docYFmKPS.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: doctWwhFe.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 6.1 GNU ELPA package
 ====================
@@ -671,7 +671,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docYFmKPS.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: doctWwhFe.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 6.2 Manual installation
 =======================
@@ -698,14 +698,14 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docYFmKPS.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: doctWwhFe.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 7 Sample configuration
 **********************
 
      (use-package denote-org
        :ensure t
-       :command
+       :commands
        ;; I list the commands here so that you can discover them more
        ;; easily.  You might want to bind the most frequently used ones to
        ;; the `org-mode-map'.
@@ -724,7 +724,7 @@ File: docYFmKPS.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
          denote-org-dblock-insert-files-as-headings))
 
 
-File: docYFmKPS.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: doctWwhFe.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 8 Acknowledgements
 ******************
@@ -736,7 +736,7 @@ Author/maintainer
      Protesilaos Stavrou.
 
 
-File: docYFmKPS.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: doctWwhFe.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -1218,7 +1218,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docYFmKPS.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: doctWwhFe.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -1230,7 +1230,7 @@ B Indices
 * Concept index::
 
 
-File: docYFmKPS.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: doctWwhFe.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -1258,7 +1258,7 @@ B.1 Function index
                                                                (line  6)
 
 
-File: docYFmKPS.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: doctWwhFe.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -1270,7 +1270,7 @@ B.2 Variable index
                                                                (line 78)
 
 
-File: docYFmKPS.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: doctWwhFe.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -1301,12 +1301,12 @@ Node: Installation30955
 Node: GNU ELPA package31190
 Node: Manual installation31755
 Node: Sample configuration32540
-Node: Acknowledgements33377
-Node: GNU Free Documentation License33664
-Node: Indices59025
-Node: Function index59201
-Node: Variable index60829
-Node: Concept index61157
+Node: Acknowledgements33378
+Node: GNU Free Documentation License33665
+Node: Indices59026
+Node: Function index59202
+Node: Variable index60830
+Node: Concept index61158
 
 End Tag Table
 
