@@ -734,10 +734,11 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
 
 (defun denote-org-dblock--extract-regexp (regexp)
   "Extract REGEXP from the buffer and trim it of surrounding spaces."
-  (string-trim
-   (save-excursion
-     (re-search-forward regexp nil :no-error)
-     (buffer-substring-no-properties (match-end 0) (line-end-position)))))
+  (when-let* ((_ (save-excursion (re-search-forward regexp nil :no-error)))
+              (match-end (match-end 0))
+              (line-end (line-end-position))
+              (text (buffer-substring-no-properties match-end line-end)))
+    (string-trim text)))
 
 (defun denote-org-dblock--get-file-contents-as-heading (file add-links)
   "Insert the contents of Org FILE, formatting the #+title as a heading.
@@ -753,7 +754,10 @@ With optional ADD-LINKS, make the title link to the original file."
         (insert-file-contents file)
         (setq title (denote-org-dblock--extract-regexp (denote--title-key-regexp file-type)))
         (setq tags (denote-org-dblock--extract-regexp (denote--keywords-key-regexp file-type)))
-        (delete-region (1+ (re-search-forward "^$" nil :no-error 1)) beginning-of-contents)
+        (when-let* ((_ (re-search-forward "^$" nil :no-error 1))
+                    (match-end (+ (match-end 0) 1))
+                    (_ (>= (point-max) match-end)))
+          (delete-region match-end beginning-of-contents))
         (goto-char beginning-of-contents)
         (when (and title tags)
           (if add-links
