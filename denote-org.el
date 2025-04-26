@@ -454,12 +454,6 @@ Also see `denote-org-dblock--files'."
                            :include-date nil))
   (org-update-dblock))
 
-;; NOTE 2024-03-30: This is how the autoload is done in org.el.
-;;;###autoload
-(eval-after-load 'org
-  '(progn
-     (org-dynamic-block-define "denote-links" 'denote-org-dblock-insert-links)))
-
 ;; TODO 2024-12-04: Maybe we can do this for anything that deals with
 ;; regular expressions that users provide?  I prefer not to do the
 ;; work if nobody wants it, though I am mentioning this here just in
@@ -520,12 +514,6 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
                            :include-date nil))
   (org-update-dblock))
 
-;; NOTE 2024-03-30: This is how the autoload is done in org.el.
-;;;###autoload
-(eval-after-load 'org
-  '(progn
-     (org-dynamic-block-define "denote-missing-links" 'denote-org-dblock-insert-missing-links)))
-
 ;;;###autoload
 (defun org-dblock-write:denote-missing-links (params)
   "Function to update `denote-links' Org Dynamic blocks.
@@ -578,12 +566,6 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
                            :include-date nil))
   (org-update-dblock))
 
-;; NOTE 2024-03-30: This is how the autoload is done in org.el.
-;;;###autoload
-(eval-after-load 'org
-  '(progn
-     (org-dynamic-block-define "denote-backlinks" 'denote-org-dblock-insert-backlinks)))
-
 ;;;###autoload
 (defun org-dblock-write:denote-backlinks (params)
   "Function to update `denote-backlinks' Org Dynamic blocks.
@@ -601,6 +583,14 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
       (join-line)))) ; remove trailing empty line
 
 ;;;;; Dynamic block to insert entire file contents
+
+(defun denote-org-escape-code-in-region (beg end)
+  "Like `org-escape-code-in-region' to escape only #+ by appending a zero width space to it.
+Operate on the region between positions BEG and END."
+  (save-excursion
+    (goto-char end)
+    (while (re-search-backward "^[ \t]*\\(#\\+\\)" beg t)
+      (save-excursion (replace-match "​\\1" nil nil nil 1)))))
 
 (defun denote-org-dblock--get-file-contents (file &optional no-front-matter add-links)
   "Insert the contents of FILE.
@@ -633,7 +623,8 @@ argument."
              (1+ (re-search-forward "^$" nil :no-error 1)))
            beginning-of-contents))
         (when add-links
-          (indent-region beginning-of-contents (point-max) 2)))
+          (indent-region beginning-of-contents (point-max) 2))
+        (denote-org-escape-code-in-region beginning-of-contents (point-max)))
       (buffer-string))))
 
 (defvar denote-org-dblock-file-contents-separator
@@ -707,12 +698,6 @@ among `denote-sort-components'."
                            :add-links nil))
   (org-update-dblock))
 
-;; NOTE 2024-03-30: This is how the autoload is done in org.el.
-;;;###autoload
-(eval-after-load 'org
-  '(progn
-     (org-dynamic-block-define "denote-files" 'denote-org-dblock-insert-files)))
-
 ;;;###autoload
 (defun org-dblock-write:denote-files (params)
   "Function to update `denote-files' Org Dynamic blocks.
@@ -765,7 +750,8 @@ With optional ADD-LINKS, make the title link to the original file."
             (insert (format "* %s %s\n\n" title tags)))
           (org-align-tags :all))
         (while (re-search-forward "^\\(*+?\\) " nil :no-error)
-          (replace-match (format "*%s " "\\1"))))
+          (replace-match (format "*%s " "\\1")))
+        (denote-org-escape-code-in-region beginning-of-contents (point-max)))
       (buffer-string))))
 
 (defun denote-org-dblock-add-files-as-headings (regexp &optional add-links sort-by-component reverse excluded-dirs-regexp exclude-regexp)
@@ -832,12 +818,6 @@ as its own heading."
                            :add-links nil))
   (org-update-dblock))
 
-;; NOTE 2024-03-30: This is how the autoload is done in org.el.
-;;;###autoload
-(eval-after-load 'org
-  '(progn
-     (org-dynamic-block-define "denote-files-as-headings" 'denote-org-dblock-insert-files-as-headings)))
-
 ;;;###autoload
 (defun org-dblock-write:denote-files-as-headings (params)
   "Function to update `denote-files' Org Dynamic blocks.
@@ -852,6 +832,16 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
     (when block-name (insert "#+name: " block-name "\n"))
     (when rx (denote-org-dblock-add-files-as-headings rx add-links sort reverse excluded-dirs not-rx)))
   (join-line)) ; remove trailing empty line
+
+;; NOTE 2024-03-30: This is how the autoload is done in org.el.
+;;;###autoload
+(eval-after-load 'org
+  '(progn
+     (org-dynamic-block-define "denote-links" 'denote-org-dblock-insert-links)
+     (org-dynamic-block-define "denote-missing-links" 'denote-org-dblock-insert-missing-links)
+     (org-dynamic-block-define "denote-backlinks" 'denote-org-dblock-insert-backlinks)
+     (org-dynamic-block-define "denote-files" 'denote-org-dblock-insert-files)
+     (org-dynamic-block-define "denote-files-as-headings" 'denote-org-dblock-insert-files-as-headings)))
 
 (provide 'denote-org)
 ;;; denote-org.el ends here
