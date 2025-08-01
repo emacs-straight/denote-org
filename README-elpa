@@ -212,6 +212,9 @@ Table of Contents
 3.2 The Org dynamic block to insert missing links only
 ──────────────────────────────────────────────────────
 
+  [ The parameter `:not-regexp' for the
+  `denote-org-dblock-insert-missing-links' is part of 0.2.0-dev. ]
+
   The `denote-missing-links' block is available with the command
   `denote-org-dblock-insert-missing-links'. It is like the
   aforementioned `denote-links' block, except it only lists links to
@@ -220,7 +223,7 @@ Table of Contents
   optional except for `:regexp':
 
   ┌────
-  │ #+BEGIN: denote-missing-links :regexp "YOUR REGEXP HERE" :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :include-date nil
+  │ #+BEGIN: denote-missing-links :regexp "YOUR REGEXP HERE" :not-regexp nil :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :include-date nil
   │ 
   │ #+END:
   └────
@@ -239,6 +242,9 @@ Table of Contents
 3.3 The Org dynamic block to insert backlinks
 ─────────────────────────────────────────────
 
+  [ The parameter `:not-regexp' for the
+  `denote-org-dblock-insert-backlinks' is part of 0.2.0-dev. ]
+
   Apart from links to files matching a regular expression, we can also
   produce a list of backlinks to the current file. The dynamic block can
   be inserted at point with the command
@@ -246,7 +252,7 @@ Table of Contents
   Org file:
 
   ┌────
-  │ #+BEGIN: denote-backlinks :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :this-heading-only nil :include-date nil
+  │ #+BEGIN: denote-backlinks :not-regexp nil :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :this-heading-only nil :include-date nil
   │ 
   │ #+END:
   └────

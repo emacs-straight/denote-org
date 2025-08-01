@@ -40,6 +40,107 @@
   :link '(url-link :tag "Denote homepage" "https://protesilaos.com/emacs/denote")
   :link '(url-link :tag "Denote Org homepage" "https://protesilaos.com/emacs/denote-org"))
 
+(defconst denote-org--common-extra-parameters
+  '((list :inline t
+         :not-regexp
+         (choice (const :tag "Do not exclude anything" nil)
+                 (string :tag "Regular expression to exclude")))
+   (list :inline t
+         :excluded-dirs-regexp
+         (choice (const :tag "Do not exclude directories" nil)
+                 (string :tag "Regular expression to exclude directories")))
+   (list :inline t
+         :sort-by-component
+         ;; TODO 2025-07-30: Check the other sort options we provide.
+         (choice (const :tag "Sort by title" title)
+                 (const :tag "Sort by signature" signature)
+                 (const :tag "Sort by keywords" keywords)))
+   (list :inline t
+         :reverse-sort
+         (choice (const :tag "No reverse sort" nil)
+                 (const :tag "Reverse sort" t)))
+   (list :inline t
+         :id-only
+         (choice (const :tag "Links with full description" nil)
+                 (const :tag "Links with just the identifier" t)))
+   (list :inline t
+         :include-date
+         (choice (const :tag "Do not show the date" nil)
+                 (const :tag "Show the date" t))))
+  "For use in the :type of `denote-org-extra-parameters-alist'.")
+
+(defcustom denote-org-extra-parameters-alist
+  '((denote-links :not-regexp nil :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :include-date nil)
+    (denote-missing-links :not-regexp nil :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :include-date nil)
+    (denote-backlinks :not-regexp nil :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :this-heading-only nil :include-date nil)
+    (denote-files :not-regexp nil :excluded-dirs-regexp nil :sort-by-component title :reverse-sort nil :no-front-matter nil :file-separator nil :add-links nil)
+    (denote-files-as-headings :not-regexp nil :excluded-dirs-regexp nil :sort-by-component title :reverse-sort nil :add-links nil))
+  "Extra parameters for each Denote Org dynamic block.
+Those are in addition to the mandatory parameters that will always be
+present in a dynamic block."
+  :type '(set
+          (list
+           (list :inline t
+                 (const denote-links)
+                 (set
+                  (list :inline t
+                        :not-regexp
+                        (choice (const :tag "Do not exclude anything" nil)
+                                (string :tag "Regular expression to exclude")))
+                  (list :inline t
+                        :excluded-dirs-regexp
+                        (choice (const :tag "Do not exclude directories" nil)
+                                (string :tag "Regular expression to exclude directories")))
+                  (list :inline t
+                        :sort-by-component
+                        ;; TODO 2025-07-30: Check the other sort options we provide.
+                        (choice (const :tag "Sort by title" title)
+                                (const :tag "Sort by signature" signature)
+                                (const :tag "Sort by keywords" keywords)))
+                  (list :inline t
+                        :reverse-sort
+                        (choice (const :tag "No reverse sort" nil)
+                                (const :tag "Reverse sort" t)))
+                  (list :inline t
+                        :id-only
+                        (choice (const :tag "Links with full description" nil)
+                                (const :tag "Links with just the identifier" t)))
+                  (list :inline t
+                        :include-date
+                        (choice (const :tag "Do not show the date" nil)
+                                (const :tag "Show the date" t)))))
+
+           (list :inline t
+                 (const denote-missing-links)
+                 (set
+                  (list :inline t
+                        :excluded-dirs-regexp
+                        (choice (const :tag "Do not exclude directories" nil)
+                                (string :tag "Regular expression to exclude directories")))
+                  (list :inline t
+                        :sort-by-component
+                        (choice (const :tag "Sort by title" title)
+                                (const :tag "Sort by title" signature)
+                                (const :tag "Sort by title" keywords)))
+                  (list :inline t
+                        :reverse-sort
+                        (choice (const :tag "No reverse sort" nil)
+                                (const :tag "Reverse sort" t)))
+                  (list :inline t
+                        :id-only
+                        (choice (const :tag "Links with full description" nil)
+                                (const :tag "Links with just the identifier" t)))
+                  (list :inline t
+                        :include-date
+                        (choice (const :tag "Do not show the date" nil)
+                                (const :tag "Show the date" t)))))))
+                             
+           ;; (const denote-missing-links)
+           ;; (const denote-backlinks)
+           ;; (const denote-files)
+           ;; (const denote-files-as-headings))
+  :group 'denote-org)
+
 ;;;; Link to file and heading
 
 (defun denote-org--get-outline (file)
@@ -407,23 +508,27 @@ Also see `denote-org-dblock--files-missing-only'."
    (t
     (denote-directory-files files-matching-regexp :omit-current nil exclude-regexp))))
 
-(defun denote-org-dblock--get-missing-links (regexp)
+(defun denote-org-dblock--get-missing-links (regexp exclude-regexp)
   "Return list of missing links to all notes matching REGEXP.
 Missing links are those for which REGEXP does not have a match in
-the current buffer."
-  (when-let* ((all-files (denote-directory-files regexp :omit-current))
+the current buffer.
+
+EXCLUDE-REGEXP is filtered out of the matching files."
+  (when-let* ((all-files (denote-directory-files regexp :omit-current nil exclude-regexp))
               (linked-files (denote-get-links nil all-files)))
     (seq-difference all-files linked-files)))
 
-(defun denote-org-dblock--files-missing-only (files-matching-regexp &optional sort-by-component reverse)
+(defun denote-org-dblock--files-missing-only (files-matching-regexp &optional sort-by-component reverse exclude-regexp)
   "Return list of missing links to FILES-MATCHING-REGEXP.
 SORT-BY-COMPONENT and REVERSE have the same meaning as
 `denote-sort-files'.  If both are nil, do not try to perform any
 sorting.
 
+EXCLUDE-REGEXP is filtered out of the matching files.
+
 Also see `denote-org-dblock--files'."
   (denote-sort-files
-   (denote-org-dblock--get-missing-links files-matching-regexp)
+   (denote-org-dblock--get-missing-links files-matching-regexp exclude-regexp)
    sort-by-component
    reverse))
 
@@ -485,10 +590,6 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
 
 ;;;;; Dynamic block to insert missing links
 
-;; TODO 2024-12-03: Do we need the :not-regexp here?  I think yes,
-;; though I prefer to have a user of this kind of dblock send me their
-;; feedback.
-
 (define-obsolete-function-alias
   'denote-org-extras-dblock-insert-missing-links
   'denote-org-dblock-insert-missing-links
@@ -503,6 +604,7 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
    org-mode)
   (org-create-dblock (list :name "denote-missing-links"
                            :regexp regexp
+                           :not-regexp nil
                            :excluded-dirs-regexp nil
                            :sort-by-component nil
                            :reverse-sort nil
@@ -515,12 +617,13 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
   "Function to update `denote-links' Org Dynamic blocks.
 Used by `org-dblock-update' with PARAMS provided by the dynamic block."
   (let* ((rx (denote-org--parse-rx (plist-get params :regexp)))
+         (not-rx (denote-org--parse-rx (plist-get params :not-regexp)))
          (sort (plist-get params :sort-by-component))
          (reverse (plist-get params :reverse-sort))
          (block-name (plist-get params :block-name))
          (denote-excluded-directories-regexp (or (plist-get params :excluded-dirs-regexp)
                                                  denote-excluded-directories-regexp))
-         (files (denote-org-dblock--files-missing-only rx sort reverse)))
+         (files (denote-org-dblock--files-missing-only rx sort reverse not-rx)))
     (when block-name (insert "#+name: " block-name "\n"))
     (denote-org--insert-links files (plist-get params :id-only) (plist-get params :include-date))
     (join-line))) ; remove trailing empty line
@@ -590,12 +693,19 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
   (when-let* ((files (if (plist-get params :this-heading-only)
                          (denote-org--get-backlinks-for-heading (denote-org--get-file-id-and-heading-id-or-context))
                        (denote-get-backlinks))))
-    (let* ((sort (plist-get params :sort-by-component))
+    (let* ((not-rx (plist-get params :not-regexp))
+           (sort (plist-get params :sort-by-component))
            (reverse (plist-get params :reverse-sort))
            (denote-excluded-directories-regexp (or (plist-get params :excluded-dirs-regexp)
                                                    denote-excluded-directories-regexp))
-           (files (denote-org-dblock--maybe-sort-backlinks files sort reverse)))
-      (denote-org--insert-links files (plist-get params :id-only) (plist-get params :include-date))
+           (files (denote-org-dblock--maybe-sort-backlinks files sort reverse))
+           (output (if not-rx
+                       (seq-remove
+                        (lambda (file)
+                          (string-match-p not-rx file))
+                        files)
+                     files)))
+      (denote-org--insert-links output (plist-get params :id-only) (plist-get params :include-date))
       (join-line)))) ; remove trailing empty line
 
 ;;;;; Dynamic block to insert entire file contents
