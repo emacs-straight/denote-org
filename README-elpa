@@ -36,6 +36,7 @@ Table of Contents
 .. 3. The Org dynamic block to insert backlinks
 .. 4. Org dynamic block to insert file contents
 .. 5. Org dynamic block to insert Org files as headings
+.. 6. Org dynamic block to insert sequences
 4. Create a note from the current Org subtree
 5. Insert link to an Org file with a further pointer to a heading
 .. 1. Backlinks for Org headings
@@ -113,6 +114,9 @@ Table of Contents
   ┌────
   │ (info "(org) Dynamic Blocks")
   └────
+
+  The `org-dynamic-block-insert-dblock' function (`C-c C-x x') provides
+  a dropdown menu of all available dynamic blocks.
 
 
 [Org dynamic blocks to insert links or backlinks] See section 3.1
@@ -501,6 +505,42 @@ section 5
 [Org dynamic blocks to insert links or backlinks] See section 3.1
 
 
+3.6 Org dynamic block to insert sequences
+─────────────────────────────────────────
+
+  [ The integration with `denote-sequence' is part of 0.2.0-dev. ]
+
+  The Denote-Sequence package enables using the Denote signature as a
+  hierarchical indicator inspired by the Folgezettel principle in the
+  Zettelkasten methodology.
+
+  The `denote-sequence' block can be inserted at point with the command
+  `denote-org-dblock-insert-sequence' or by manually including the
+  following in an Org file:
+
+  ┌────
+  │ #+BEGIN: denote-sequence :sequence "1=1" :depth 2
+  │ 
+  │ #+END:
+  └────
+
+
+  Both parameters are required.
+
+  • The sequence is the root of the hierarchy displayed in the dynamic
+    block.
+
+  • The depth is the relative depth from the root note. So in the
+    example above, the notes with sequence `1=1=1' and `1=1=2' will be
+    included in the list, but not `1=1=2=1'.
+
+  • The list of links Links is indented to visualise their hierarchical
+    structure.
+
+  • When the sequence is an empty string, all notes with sequences are
+    included in the list, up to the specified depth.
+
+
 4 Create a note from the current Org subtree
 ════════════════════════════════════════════
 
@@ -725,6 +765,8 @@ section 5
 
   Author/maintainer
         Protesilaos Stavrou.
+  Contributions to code or the manual
+        Peter Prevos.
   Ideas and user feedback
         GCamp6.
 

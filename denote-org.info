@@ -1,4 +1,4 @@
-This is docDjMrLC.info, produced by makeinfo version 6.8 from
+This is dochRgT98.info, produced by makeinfo version 6.8 from
 denote-org.texi.
 
 Copyright (C) 2022-2025 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docDjMrLC.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: dochRgT98.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 denote-org: Extensions to better integrate Org with Denote
 **********************************************************
@@ -81,6 +81,7 @@ Use Org dynamic blocks
 * The Org dynamic block to insert backlinks::
 * Org dynamic block to insert file contents::
 * Org dynamic block to insert Org files as headings::
+* Org dynamic block to insert sequences::
 
 Insert link to an Org file with a further pointer to a heading
 
@@ -99,7 +100,7 @@ Indices
 
 
 
-File: docDjMrLC.info,  Node: Overview,  Next: Use Org dynamic blocks,  Prev: Top,  Up: Top
+File: dochRgT98.info,  Node: Overview,  Next: Use Org dynamic blocks,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -115,7 +116,7 @@ blocks, links to headings, and splitting an Org subtree into its own
 standalone file.  The following sections cover the technicalities.
 
 
-File: docDjMrLC.info,  Node: Use Org dynamic blocks,  Next: Create a note from the current Org subtree,  Prev: Overview,  Up: Top
+File: dochRgT98.info,  Node: Use Org dynamic blocks,  Next: Create a note from the current Org subtree,  Prev: Overview,  Up: Top
 
 2 Use Org dynamic blocks
 ************************
@@ -146,6 +147,9 @@ Evaluate:
 
      (info "(org) Dynamic Blocks")
 
+   The ‘org-dynamic-block-insert-dblock’ function (‘C-c C-x x’) provides
+a dropdown menu of all available dynamic blocks.
+
 * Menu:
 
 * Org dynamic blocks to insert links::
@@ -153,9 +157,10 @@ Evaluate:
 * The Org dynamic block to insert backlinks::
 * Org dynamic block to insert file contents::
 * Org dynamic block to insert Org files as headings::
+* Org dynamic block to insert sequences::
 
 
-File: docDjMrLC.info,  Node: Org dynamic blocks to insert links,  Next: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
+File: dochRgT98.info,  Node: Org dynamic blocks to insert links,  Next: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
 
 2.1 Org dynamic blocks to insert links
 ======================================
@@ -244,7 +249,7 @@ block.  We cover that case as well (*note The Org dynamic block to
 insert missing links only::).
 
 
-File: docDjMrLC.info,  Node: The Org dynamic block to insert missing links only,  Next: The Org dynamic block to insert backlinks,  Prev: Org dynamic blocks to insert links,  Up: Use Org dynamic blocks
+File: dochRgT98.info,  Node: The Org dynamic block to insert missing links only,  Next: The Org dynamic block to insert backlinks,  Prev: Org dynamic blocks to insert links,  Up: Use Org dynamic blocks
 
 2.2 The Org dynamic block to insert missing links only
 ======================================================
@@ -270,7 +275,7 @@ the command ‘org-dynamic-block-insert-dblock’.
 the ‘#+BEGIN’ line to update the block.
 
 
-File: docDjMrLC.info,  Node: The Org dynamic block to insert backlinks,  Next: Org dynamic block to insert file contents,  Prev: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
+File: dochRgT98.info,  Node: The Org dynamic block to insert backlinks,  Next: Org dynamic block to insert file contents,  Prev: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
 
 2.3 The Org dynamic block to insert backlinks
 =============================================
@@ -309,7 +314,7 @@ the heading (*note Insert link to an Org file with a further pointer to
 a heading::).
 
 
-File: docDjMrLC.info,  Node: Org dynamic block to insert file contents,  Next: Org dynamic block to insert Org files as headings,  Prev: The Org dynamic block to insert backlinks,  Up: Use Org dynamic blocks
+File: dochRgT98.info,  Node: Org dynamic block to insert file contents,  Next: Org dynamic block to insert Org files as headings,  Prev: The Org dynamic block to insert backlinks,  Up: Use Org dynamic blocks
 
 2.4 Org dynamic block to insert file contents
 =============================================
@@ -424,7 +429,7 @@ parameters, which are described further below:
      purview).
 
 
-File: docDjMrLC.info,  Node: Org dynamic block to insert Org files as headings,  Prev: Org dynamic block to insert file contents,  Up: Use Org dynamic blocks
+File: dochRgT98.info,  Node: Org dynamic block to insert Org files as headings,  Next: Org dynamic block to insert sequences,  Prev: Org dynamic block to insert file contents,  Up: Use Org dynamic blocks
 
 2.5 Org dynamic block to insert Org files as headings
 =====================================================
@@ -514,7 +519,42 @@ included:
      purview).
 
 
-File: docDjMrLC.info,  Node: Create a note from the current Org subtree,  Next: Insert link to an Org file with a further pointer to a heading,  Prev: Use Org dynamic blocks,  Up: Top
+File: dochRgT98.info,  Node: Org dynamic block to insert sequences,  Prev: Org dynamic block to insert Org files as headings,  Up: Use Org dynamic blocks
+
+2.6 Org dynamic block to insert sequences
+=========================================
+
+[ The integration with ‘denote-sequence’ is part of 0.2.0-dev.  ]
+
+   The Denote-Sequence package enables using the Denote signature as a
+hierarchical indicator inspired by the Folgezettel principle in the
+Zettelkasten methodology.
+
+   The ‘denote-sequence’ block can be inserted at point with the command
+‘denote-org-dblock-insert-sequence’ or by manually including the
+following in an Org file:
+
+     #+BEGIN: denote-sequence :sequence "1=1" :depth 2
+
+     #+END:
+
+   Both parameters are required.
+
+   • The sequence is the root of the hierarchy displayed in the dynamic
+     block.
+
+   • The depth is the relative depth from the root note.  So in the
+     example above, the notes with sequence ‘1=1=1’ and ‘1=1=2’ will be
+     included in the list, but not ‘1=1=2=1’.
+
+   • The list of links Links is indented to visualise their hierarchical
+     structure.
+
+   • When the sequence is an empty string, all notes with sequences are
+     included in the list, up to the specified depth.
+
+
+File: dochRgT98.info,  Node: Create a note from the current Org subtree,  Next: Insert link to an Org file with a further pointer to a heading,  Prev: Use Org dynamic blocks,  Up: Top
 
 3 Create a note from the current Org subtree
 ********************************************
@@ -567,7 +607,7 @@ prompts for a date at this stage (also see
 ‘denote-file-type’.
 
 
-File: docDjMrLC.info,  Node: Insert link to an Org file with a further pointer to a heading,  Next: Convert denote links to file links in Org and vice versa,  Prev: Create a note from the current Org subtree,  Up: Top
+File: dochRgT98.info,  Node: Insert link to an Org file with a further pointer to a heading,  Next: Convert denote links to file links in Org and vice versa,  Prev: Create a note from the current Org subtree,  Up: Top
 
 4 Insert link to an Org file with a further pointer to a heading
 ****************************************************************
@@ -604,7 +644,7 @@ heading (*note Backlinks for Org headings::).
 * Backlinks for Org headings::
 
 
-File: docDjMrLC.info,  Node: Backlinks for Org headings,  Up: Insert link to an Org file with a further pointer to a heading
+File: dochRgT98.info,  Node: Backlinks for Org headings,  Up: Insert link to an Org file with a further pointer to a heading
 
 4.1 Backlinks for Org headings
 ==============================
@@ -620,7 +660,7 @@ also an option (*note Org dynamic blocks to insert links or backlinks:
 Org dynamic blocks to insert links.).
 
 
-File: docDjMrLC.info,  Node: Convert denote links to file links in Org and vice versa,  Next: Installation,  Prev: Insert link to an Org file with a further pointer to a heading,  Up: Top
+File: dochRgT98.info,  Node: Convert denote links to file links in Org and vice versa,  Next: Installation,  Prev: Insert link to an Org file with a further pointer to a heading,  Up: Top
 
 5 Convert ‘denote:’ links to ‘file:’ links in Org and vice versa
 ****************************************************************
@@ -651,7 +691,7 @@ Convert ‘file:’ links to ‘denote:’ links
      path and converts it into its identifier.
 
 
-File: docDjMrLC.info,  Node: Installation,  Next: Sample configuration,  Prev: Convert denote links to file links in Org and vice versa,  Up: Top
+File: dochRgT98.info,  Node: Installation,  Next: Sample configuration,  Prev: Convert denote links to file links in Org and vice versa,  Up: Top
 
 6 Installation
 **************
@@ -662,7 +702,7 @@ File: docDjMrLC.info,  Node: Installation,  Next: Sample configuration,  Prev: C
 * Manual installation::
 
 
-File: docDjMrLC.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: dochRgT98.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 6.1 GNU ELPA package
 ====================
@@ -681,7 +721,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docDjMrLC.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: dochRgT98.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 6.2 Manual installation
 =======================
@@ -708,7 +748,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docDjMrLC.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: dochRgT98.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 7 Sample configuration
 **********************
@@ -734,7 +774,7 @@ File: docDjMrLC.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
          denote-org-dblock-insert-files-as-headings))
 
 
-File: docDjMrLC.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: dochRgT98.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 8 Acknowledgements
 ******************
@@ -744,11 +784,13 @@ matters.
 
 Author/maintainer
      Protesilaos Stavrou.
+Contributions to code or the manual
+     Peter Prevos.
 Ideas and user feedback
      GCamp6.
 
 
-File: docDjMrLC.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: dochRgT98.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -1230,7 +1272,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docDjMrLC.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: dochRgT98.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -1242,7 +1284,7 @@ B Indices
 * Concept index::
 
 
-File: docDjMrLC.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: dochRgT98.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -1264,13 +1306,15 @@ B.1 Function index
                                                                (line  6)
 * denote-org-dblock-insert-missing-links: The Org dynamic block to insert missing links only.
                                                                (line  9)
+* denote-org-dblock-insert-sequence:     Org dynamic block to insert sequences.
+                                                               (line  8)
 * denote-org-extract-org-subtree:        Create a note from the current Org subtree.
                                                                (line 12)
 * denote-org-link-to-heading:            Insert link to an Org file with a further pointer to a heading.
                                                                (line  6)
 
 
-File: docDjMrLC.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: dochRgT98.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -1282,7 +1326,7 @@ B.2 Variable index
                                                                (line 79)
 
 
-File: docDjMrLC.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: dochRgT98.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -1298,27 +1342,28 @@ B.3 Concept index
 
 Tag Table:
 Node: Top862
-Node: Overview3405
-Node: Use Org dynamic blocks4038
-Node: Org dynamic blocks to insert links5601
-Node: The Org dynamic block to insert missing links only10274
-Node: The Org dynamic block to insert backlinks11529
-Node: Org dynamic block to insert file contents13430
-Node: Org dynamic block to insert Org files as headings19806
-Node: Create a note from the current Org subtree24426
-Node: Insert link to an Org file with a further pointer to a heading27060
-Node: Backlinks for Org headings28868
-Node: Convert denote links to file links in Org and vice versa29662
-Node: Installation31331
-Node: GNU ELPA package31566
-Node: Manual installation32131
-Node: Sample configuration32916
-Node: Acknowledgements33754
-Node: GNU Free Documentation License34078
-Node: Indices59439
-Node: Function index59615
-Node: Variable index61243
-Node: Concept index61571
+Node: Overview3447
+Node: Use Org dynamic blocks4080
+Node: Org dynamic blocks to insert links5816
+Node: The Org dynamic block to insert missing links only10489
+Node: The Org dynamic block to insert backlinks11744
+Node: Org dynamic block to insert file contents13645
+Node: Org dynamic block to insert Org files as headings20021
+Node: Org dynamic block to insert sequences24687
+Node: Create a note from the current Org subtree25951
+Node: Insert link to an Org file with a further pointer to a heading28585
+Node: Backlinks for Org headings30393
+Node: Convert denote links to file links in Org and vice versa31187
+Node: Installation32856
+Node: GNU ELPA package33091
+Node: Manual installation33656
+Node: Sample configuration34441
+Node: Acknowledgements35279
+Node: GNU Free Documentation License35658
+Node: Indices61019
+Node: Function index61195
+Node: Variable index62976
+Node: Concept index63304
 
 End Tag Table
 
