@@ -973,74 +973,83 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
 DEPTH of the root FILE is 1. Using 2 lists children, 3 grandchildren, and so on."
     (interactive
      (list
-      (denote-sequence-file-prompt
-       (format "List descendants of:"
-               (propertize
-                (denote--rename-dired-file-or-current-file-or-prompt)
-                'face 'denote-faces-prompt-current-name)))
-      (read-number "Maximum relative depth from root node: " 2))
-     (org-mode))
+      (denote-sequence-file-prompt "List descendants of")
+      (denote-sequence-depth-prompt "Maximum relative depth from root node: " 2))
+     org-mode)
     (org-create-dblock (list :name "denote-sequence"
                              :sequence (denote-retrieve-filename-signature file)
                              :depth depth))
     (org-update-dblock))
 
   (defun denote-org-sequence--get-files-with-max-depth (max-depth &optional files)
-    "Return members of FILES with sequence depth less or equal than MAX-DEPTH.
-When no FILES are provided, use all files with a sequence signature."
-    (unless files
-      (setq files (denote-sequence-get-all-files)))
-    (let* ((hierarchy '())
-           (files (denote-sequence-sort-files files))
-           (root-sequence (denote-retrieve-filename-signature (car files)))
+    "Return members of FILES with sequence depth less or equal to MAX-DEPTH.
+With optional FILES operate on them, otherwise use the return value of
+`denote-sequence-get-all-files'."
+    (let* ((all-files (or files (denote-sequence-get-all-files)))
+           (sorted-files (denote-sequence-sort-files all-files))
+           (root-sequence (denote-retrieve-filename-signature (car sorted-files)))
            (root-depth (denote-sequence-depth root-sequence)))
-      (message (number-to-string root-depth))
-      (dolist (file files)
-        (let* ((sequence (denote-retrieve-filename-signature file))
-               (depth (denote-sequence-depth sequence)))
-          (when (<= depth (- (+ root-depth max-depth) 1))
-            (push file hierarchy))))
-      (nreverse hierarchy)))
-
-  (defun org-dblock-write:denote-sequence (params)
-    "Function to update `denote-sequence' Org Dynamic blocks.
-When sequence is an empty string, then use all Denote files with a sequence.
-
-Used by `org-dblock-update' with PARAMS provided by the dynamic block."
-    (let* ((block-name (plist-get params :block-name))
-           (sequence (plist-get params :sequence))
-           (depth (plist-get params :depth))
-           ;; This will not work for people with bespoke `denote-file-name-components-order'
-           (parent (denote-directory-files (concat sequence "-")))
-           (children (denote-sequence-get-relative sequence 'all-children))
-           (family (if children
-                       (append parent children)
-                     (denote-sequence-get-all-files)))
-           (files (denote-org-sequence--get-files-with-max-depth depth family)))
-      (when block-name (insert "#+name: " block-name "\n"))
-      (denote-org--insert-sequence files)
-      (join-line)))
+      (let ((hierarchy nil))
+        (dolist (file sorted-files)
+          (let* ((sequence (denote-retrieve-filename-signature file))
+                 (depth (denote-sequence-depth sequence)))
+            (when (<= depth (- (+ root-depth max-depth) 1))
+              (push file hierarchy))))
+        (nreverse hierarchy))))
 
   (defun denote-org--insert-sequence (files)
     "Insert indented list of links to sequence FILES."
     (let* ((root-sequence (denote-retrieve-filename-signature (car files)))
            (root-depth (denote-sequence-depth root-sequence))
-           (links '()))
-      (message "Inserting %s links" (length files))
+           (links nil))
       (dolist (file files)
         (let* ((sequence (denote-retrieve-filename-signature file))
                (description (denote-get-link-description file))
+               ;; TODO 2025-08-14: The default `denote-link-description-format'
+               ;; includes the signature, which then duplicates the
+               ;; signature in the description.  We should either
+               ;; introduce a user option to change this behaviour
+               ;; here or at least hardcode `denote-link-description-format'
+               ;; to something that is more appropriate.
                (link-title (concat sequence ": " description))
                (link (denote-format-link file link-title 'org nil))
                (depth (- (denote-sequence-depth sequence) root-depth))
                (indent (make-string (* depth 2) ?\s))
                (link-as-list-item (format (concat indent denote-link--prepare-links-format) link)))
           (push link-as-list-item links)))
-      (setq links (nreverse links))
-      (dolist (link links)
-        (insert link)))))
+      (dolist (link (nreverse links))
+        (insert link))))
 
-;;; 
+  ;; TODO 2025-08-14: Once these are stable, consider moving them to denote-sequence.el
+  (defun denote-org-sequence--format-word-regexp (sequence)
+    "Return word regexp matching SEQUENCE.
+If sequence does not start with a =, then include it."
+    (unless (string-prefix-p "=" sequence)
+      (setq sequence (concat "=" sequence)))
+    (format "%s\\b" (regexp-quote sequence)))
+
+  (defun denote-org-sequence--get-file (sequence)
+    "Get file matching SEQUENCE."
+    (let ((file (denote-directory-files (denote-org-sequence--format-word-regexp sequence))))
+      (if (length> file 1)
+          (error "Sequence `%s' does not have a unique match" sequence)
+        file)))
+
+  (defun org-dblock-write:denote-sequence (params)
+    "Function to update `denote-sequence' Org Dynamic blocks.
+When sequence is an empty string, then use all Denote files with a sequence.
+
+Used by `org-dblock-update' with PARAMS provided by the dynamic block."
+    (let ((block-name (plist-get params :block-name)))
+      (when-let* ((sequence (plist-get params :sequence))
+                  (depth (plist-get params :depth))
+                  (parent (denote-org-sequence--get-file sequence))
+                  (children (denote-sequence-get-relative sequence 'all-children))
+                  (family (append parent children))
+                  (files (denote-org-sequence--get-files-with-max-depth depth family)))
+        (when block-name (insert "#+name: " block-name "\n"))
+        (denote-org--insert-sequence files)
+        (join-line)))))
 
 ;; NOTE 2024-03-30: This is how the autoload is done in org.el.
 ;;;###autoload
