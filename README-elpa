@@ -11,11 +11,11 @@ This manual, written by Protesilaos Stavrou, describes the customization
 options for the Emacs package called `denote' (or `denote.el'), and
 provides every other piece of information pertinent to it.
 
-The documentation furnished herein corresponds to stable version 0.1.0,
-released on 2025-04-15.  Any reference to a newer feature which does not
+The documentation furnished herein corresponds to stable version 0.2.0,
+released on 2025-10-17.  Any reference to a newer feature which does not
 yet form part of the latest tagged commit, is explicitly marked as such.
 
-Current development target is 0.2.0-dev.
+Current development target is 0.3.0-dev.
 
 ⁃ Package name (GNU ELPA): `denote-org'
 ⁃ Official manual: <https://protesilaos.com/emacs/denote-org>
@@ -177,11 +177,10 @@ Table of Contents
   • The `:sort-by-component' parameter is optional. It sorts the files
     by the given Denote file name component. The value it accepts is an
     unquoted symbol among `title', `keywords', `signature',
-    `identifier', `random'. When using the command
+    `identifier', `random', `last-modified'. When using the command
     `denote-org-dblock-insert-files', this parameter is automatically
     inserted together with the (`:regexp' parameter) and the user is
-    prompted for a file name component. [ The `random' sort is part of
-    0.2.0-dev. ]
+    prompted for a file name component.
 
   • The `:reverse-sort' parameter is optional. It reverses the order in
     which files appear in. This is meaningful even without the presence
@@ -216,9 +215,6 @@ Table of Contents
 3.2 The Org dynamic block to insert missing links only
 ──────────────────────────────────────────────────────
 
-  [ The parameter `:not-regexp' for the
-  `denote-org-dblock-insert-missing-links' is part of 0.2.0-dev. ]
-
   The `denote-missing-links' block is available with the command
   `denote-org-dblock-insert-missing-links'. It is like the
   aforementioned `denote-links' block, except it only lists links to
@@ -245,9 +241,6 @@ Table of Contents
 
 3.3 The Org dynamic block to insert backlinks
 ─────────────────────────────────────────────
-
-  [ The parameter `:not-regexp' for the
-  `denote-org-dblock-insert-backlinks' is part of 0.2.0-dev. ]
 
   Apart from links to files matching a regular expression, we can also
   produce a list of backlinks to the current file. The dynamic block can
@@ -356,11 +349,10 @@ section 5
   • The `:sort-by-component' parameter is optional. It sorts the files
     by the given Denote file name component. The value it accepts is an
     unquoted symbol among `title', `keywords', `signature',
-    `identifier', `random'. When using the command
+    `identifier', `random', `last-modified'. When using the command
     `denote-org-dblock-insert-files', this parameter is automatically
     inserted together with the (`:regexp' parameter) and the user is
-    prompted for a file name component. [ The `random' sort is part of
-    0.2.0-dev. ]
+    prompted for a file name component.
 
   • The `:reverse-sort' parameter is optional. It reverses the order in
     which files appear in. This is meaningful even without the presence
@@ -476,11 +468,10 @@ section 5
   • The `:sort-by-component' parameter is optional. It sorts the files
     by the given Denote file name component. The value it accepts is an
     unquoted symbol among `title', `keywords', `signature',
-    `identifier', `random'. When using the command
+    `identifier', `random', `last-modified'. When using the command
     `denote-org-dblock-insert-files', this parameter is automatically
     inserted together with the (`:regexp' parameter) and the user is
-    prompted for a file name component. [ The `random' sort is part of
-    0.2.0-dev. ]
+    prompted for a file name component.
 
   • The `:reverse-sort' parameter is optional. It reverses the order in
     which files appear in. This is meaningful even without the presence
@@ -497,7 +488,7 @@ section 5
   • The `:exclude-tags' parameter is optional. It controls whether the
     `#+filetags' of the matching file are appended to the title as tags.
     This is what happens by default. If `:exclude-tags' is non-nil, then
-    the tags are omitted. [ Part of 0.2.0-dev. ]
+    the tags are omitted.
 
   • An optional `:block-name' parameter can be specified with a string
     value to add a `#+name' to the results. This is useful for further
@@ -512,8 +503,6 @@ section 5
 
 3.6 Org dynamic block to insert sequences
 ─────────────────────────────────────────
-
-  [ The integration with `denote-sequence' is part of 0.2.0-dev. ]
 
   The Denote-Sequence package enables using the Denote signature as a
   hierarchical indicator inspired by the Folgezettel principle in the
