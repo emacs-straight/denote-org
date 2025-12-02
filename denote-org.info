@@ -1,4 +1,4 @@
-This is docSk7ppP.info, produced by makeinfo version 6.8 from
+This is doc9ROXCJ.info, produced by makeinfo version 7.1.1 from
 denote-org.texi.
 
 Copyright (C) 2022-2025 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docSk7ppP.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: doc9ROXCJ.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 denote-org: Extensions to better integrate Org with Denote
 **********************************************************
@@ -72,7 +72,7 @@ of it.
 * GNU Free Documentation License::
 * Indices::
 
-— The Detailed Node Listing —
+-- The Detailed Node Listing --
 
 Use Org dynamic blocks
 
@@ -100,7 +100,7 @@ Indices
 
 
 
-File: docSk7ppP.info,  Node: Overview,  Next: Use Org dynamic blocks,  Prev: Top,  Up: Top
+File: doc9ROXCJ.info,  Node: Overview,  Next: Use Org dynamic blocks,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -116,12 +116,12 @@ blocks, links to headings, and splitting an Org subtree into its own
 standalone file.  The following sections cover the technicalities.
 
 
-File: docSk7ppP.info,  Node: Use Org dynamic blocks,  Next: Create a note from the current Org subtree,  Prev: Overview,  Up: Top
+File: doc9ROXCJ.info,  Node: Use Org dynamic blocks,  Next: Create a note from the current Org subtree,  Prev: Overview,  Up: Top
 
 2 Use Org dynamic blocks
 ************************
 
-Denote can optionally integrate with Org mode’s “dynamic blocks”
+Denote can optionally integrate with Org mode's "dynamic blocks"
 facility.  This means that it can use special blocks that are evaluated
 with ‘C-c C-x C-u’ (‘org-dblock-update’) to generate their contents.
 The following subsections describe the types of Org dynamic blocks
@@ -135,11 +135,11 @@ provided by Denote.
 corresponds to the type of block.  The block type and its parameters are
 stated in the opening ‘#+BEGIN’ line.  Typing ‘C-c C-x C-u’
 (‘org-dblock-update’) with point on that line runs (or re-runs) the
-associated function with the given parameters and populates the block’s
+associated function with the given parameters and populates the block's
 contents accordingly.
 
    Dynamic blocks are particularly useful for metanote entries that
-reflect on the status of earlier notes (read the Denote manual’s section
+reflect on the status of earlier notes (read the Denote manual's section
 about writing metanotes).
 
    The Org manual describes the technicalities of Dynamic Blocks.
@@ -160,7 +160,7 @@ a dropdown menu of all available dynamic blocks.
 * Org dynamic block to insert sequences::
 
 
-File: docSk7ppP.info,  Node: Org dynamic blocks to insert links,  Next: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
+File: doc9ROXCJ.info,  Node: Org dynamic blocks to insert links,  Next: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
 
 2.1 Org dynamic blocks to insert links
 ======================================
@@ -230,7 +230,7 @@ line to update the block.
      which case links are inserted without a description text but only
      with the identifier of the given file.  This has the same meaning
      as with the ‘denote-link’ command and related facilities (read the
-     Denote manual’s section about linking to other files in the
+     Denote manual's section about linking to other files in the
      ‘denote-directory’).
 
    • The ‘:include-date’ parameter controls whether to display the date
@@ -239,7 +239,7 @@ line to update the block.
 
    • An optional ‘:block-name’ parameter can be specified with a string
      value to add a ‘#+name’ to the results.  This is useful for further
-     processing using Org facilities (a feature that is outside Denote’s
+     processing using Org facilities (a feature that is outside Denote's
      purview).
 
    In some workflows, users may want to have a separate block to see
@@ -248,7 +248,7 @@ block.  We cover that case as well (*note The Org dynamic block to
 insert missing links only::).
 
 
-File: docSk7ppP.info,  Node: The Org dynamic block to insert missing links only,  Next: The Org dynamic block to insert backlinks,  Prev: Org dynamic blocks to insert links,  Up: Use Org dynamic blocks
+File: doc9ROXCJ.info,  Node: The Org dynamic block to insert missing links only,  Next: The Org dynamic block to insert backlinks,  Prev: Org dynamic blocks to insert links,  Up: Use Org dynamic blocks
 
 2.2 The Org dynamic block to insert missing links only
 ======================================================
@@ -271,7 +271,7 @@ the command ‘org-dynamic-block-insert-dblock’.
 the ‘#+BEGIN’ line to update the block.
 
 
-File: docSk7ppP.info,  Node: The Org dynamic block to insert backlinks,  Next: Org dynamic block to insert file contents,  Prev: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
+File: doc9ROXCJ.info,  Node: The Org dynamic block to insert backlinks,  Next: Org dynamic block to insert file contents,  Prev: The Org dynamic block to insert missing links only,  Up: Use Org dynamic blocks
 
 2.3 The Org dynamic block to insert backlinks
 =============================================
@@ -307,16 +307,16 @@ the heading (*note Insert link to an Org file with a further pointer to
 a heading::).
 
 
-File: docSk7ppP.info,  Node: Org dynamic block to insert file contents,  Next: Org dynamic block to insert Org files as headings,  Prev: The Org dynamic block to insert backlinks,  Up: Use Org dynamic blocks
+File: doc9ROXCJ.info,  Node: Org dynamic block to insert file contents,  Next: Org dynamic block to insert Org files as headings,  Prev: The Org dynamic block to insert backlinks,  Up: Use Org dynamic blocks
 
 2.4 Org dynamic block to insert file contents
 =============================================
 
-Denote can optionally use Org’s dynamic blocks facility to produce a
+Denote can optionally use Org's dynamic blocks facility to produce a
 section that lists entire file contents (*note Use Org dynamic
 blocks::).  This works by instructing Org to match a regular expression
 of Denote files, the same way we do with Denote links (read the Denote
-manual’s section about inserting links that match a regular expression).
+manual's section about inserting links that match a regular expression).
 
    This is useful to, for example, compile a dynamically concatenated
 list of scattered thoughts on a given topic, like ‘^2023.*_emacs’ for a
@@ -417,17 +417,17 @@ parameters, which are described further below:
 
    • An optional ‘:block-name’ parameter can be specified with a string
      value to add a ‘#+name’ to the results.  This is useful for further
-     processing using Org facilities (a feature that is outside Denote’s
+     processing using Org facilities (a feature that is outside Denote's
      purview).
 
 
-File: docSk7ppP.info,  Node: Org dynamic block to insert Org files as headings,  Next: Org dynamic block to insert sequences,  Prev: Org dynamic block to insert file contents,  Up: Use Org dynamic blocks
+File: doc9ROXCJ.info,  Node: Org dynamic block to insert Org files as headings,  Next: Org dynamic block to insert sequences,  Prev: Org dynamic block to insert file contents,  Up: Use Org dynamic blocks
 
 2.5 Org dynamic block to insert Org files as headings
 =====================================================
 
 [ IMPORTANT NOTE: This dynamic block only works with Org files, because
-it has to assume the Org notation in order to insert each file’s
+it has to assume the Org notation in order to insert each file's
 contents as its own heading.  ]
 
    As a variation of the previously covered block that inserts file
@@ -511,11 +511,11 @@ included:
 
    • An optional ‘:block-name’ parameter can be specified with a string
      value to add a ‘#+name’ to the results.  This is useful for further
-     processing using Org facilities (a feature that is outside Denote’s
+     processing using Org facilities (a feature that is outside Denote's
      purview).
 
 
-File: docSk7ppP.info,  Node: Org dynamic block to insert sequences,  Prev: Org dynamic block to insert Org files as headings,  Up: Use Org dynamic blocks
+File: doc9ROXCJ.info,  Node: Org dynamic block to insert sequences,  Prev: Org dynamic block to insert Org files as headings,  Up: Use Org dynamic blocks
 
 2.6 Org dynamic block to insert sequences
 =========================================
@@ -539,7 +539,7 @@ following in an Org file:
      format is like ‘1=1’ or, for its alphanumeric counterpart, ‘1a’.
 
      A value of ‘:sequence’ which is an empty string ‘""’ or the regular
-     expression for “match anything at least once”, namely ‘".+"’, mean
+     expression for "match anything at least once", namely ‘".+"’, mean
      to collect all the sequences with their children.
 
    • The depth is the relative depth from the root note: the number 2 is
@@ -551,13 +551,13 @@ following in an Org file:
 structure.
 
 
-File: docSk7ppP.info,  Node: Create a note from the current Org subtree,  Next: Insert link to an Org file with a further pointer to a heading,  Prev: Use Org dynamic blocks,  Up: Top
+File: doc9ROXCJ.info,  Node: Create a note from the current Org subtree,  Next: Insert link to an Org file with a further pointer to a heading,  Prev: Use Org dynamic blocks,  Up: Top
 
 3 Create a note from the current Org subtree
 ********************************************
 
 In Org parlance, an entry with all its subheadings and other contents is
-a “subtree”.  Denote can operate on the subtree to extract it from the
+a "subtree".  Denote can operate on the subtree to extract it from the
 current file and create a new file out of it.  One such workflow is to
 collect thoughts in a single document and produce longer standalone
 notes out of them upon review.
@@ -569,12 +569,12 @@ contents into a new file.  This command is part of the optional
 ‘denote-org.el’ extension, which is part of the ‘denote’ package.  It is
 loaded automatically as soon as one of its commands is invoked.
 
-   The text of the subtree’s heading becomes the ‘#+title’ of the new
+   The text of the subtree's heading becomes the ‘#+title’ of the new
 note.  Everything else is inserted as-is.
 
    If the heading has any tags, they are used as the keywords of the new
 note.  If the Org file has any ‘#+filetags’ they are taken as well
-(Org’s ‘#+filetags’ are inherited by the headings).  If none of these
+(Org's ‘#+filetags’ are inherited by the headings).  If none of these
 are true and the user option ‘denote-prompts’ includes an entry for
 keywords, then ‘denote-org-extract-org-subtree’ prompts for keywords.
 Else the new note has no keywords.
@@ -582,7 +582,7 @@ Else the new note has no keywords.
    If the heading has a ‘PROPERTIES’ drawer, it is retained for further
 review.
 
-   If the heading’s ‘PROPERTIES’ drawer includes a ‘DATE’ or ‘CREATED’
+   If the heading's ‘PROPERTIES’ drawer includes a ‘DATE’ or ‘CREATED’
 property, or there exists a ‘CLOSED’ statement with a timestamp value,
 use that to derive the date (or date and time) of the new note (if there
 is only a date, the time is taken as 00:00).  If more than one of these
@@ -604,7 +604,7 @@ prompts for a date at this stage (also see
 ‘denote-file-type’.
 
 
-File: docSk7ppP.info,  Node: Insert link to an Org file with a further pointer to a heading,  Next: Convert denote links to file links in Org and vice versa,  Prev: Create a note from the current Org subtree,  Up: Top
+File: doc9ROXCJ.info,  Node: Insert link to an Org file with a further pointer to a heading,  Next: Convert denote links to file links in Org and vice versa,  Prev: Create a note from the current Org subtree,  Up: Top
 
 4 Insert link to an Org file with a further pointer to a heading
 ****************************************************************
@@ -620,7 +620,7 @@ text]]’.
    Because only Org files can have links to individual headings, the
 command ‘denote-org-link-to-heading’ prompts only for Org files (i.e.
 files which include the ‘.org’ extension).  Remember that Denote works
-with many file types (read the Denote manual’s section about the
+with many file types (read the Denote manual's section about the
 file-naming scheme).
 
    This feature is similar to the concept of the user option
@@ -641,7 +641,7 @@ heading (*note Backlinks for Org headings::).
 * Backlinks for Org headings::
 
 
-File: docSk7ppP.info,  Node: Backlinks for Org headings,  Up: Insert link to an Org file with a further pointer to a heading
+File: doc9ROXCJ.info,  Node: Backlinks for Org headings,  Up: Insert link to an Org file with a further pointer to a heading
 
 4.1 Backlinks for Org headings
 ==============================
@@ -651,20 +651,20 @@ headings (*note Insert link to an Org file with a further pointer to a
 heading::).  It is then possible to produce a corresponding backlinks
 buffer with the command ‘denote-org-backlinks-for-heading’.  The
 resulting buffer behaves the same way as the standard backlinks buffer
-we provide (read the Denote manual’s section about the backlinks
+we provide (read the Denote manual's section about the backlinks
 buffer).  An Org dynamic block with backlinks to the current heading is
 also an option (*note Org dynamic blocks to insert links or backlinks:
 Org dynamic blocks to insert links.).
 
 
-File: docSk7ppP.info,  Node: Convert denote links to file links in Org and vice versa,  Next: Installation,  Prev: Insert link to an Org file with a further pointer to a heading,  Up: Top
+File: doc9ROXCJ.info,  Node: Convert denote links to file links in Org and vice versa,  Next: Installation,  Prev: Insert link to an Org file with a further pointer to a heading,  Up: Top
 
 5 Convert ‘denote:’ links to ‘file:’ links in Org and vice versa
 ****************************************************************
 
 Sometimes the user needs to translate all ‘denote:’ link types to their
 ‘file:’ equivalent.  This may be because some other tool does not
-recognise ‘denote:’ links (or other custom links types—which are a
+recognise ‘denote:’ links (or other custom links types--which are a
 standard feature of Org, by the way).  The user thus needs to (i) either
 make a copy of their Denote note or edit the existing one, and (ii)
 convert all links to the generic ‘file:’ link type that external/other
@@ -688,7 +688,7 @@ Convert ‘file:’ links to ‘denote:’ links
      path and converts it into its identifier.
 
 
-File: docSk7ppP.info,  Node: Installation,  Next: Sample configuration,  Prev: Convert denote links to file links in Org and vice versa,  Up: Top
+File: doc9ROXCJ.info,  Node: Installation,  Next: Sample configuration,  Prev: Convert denote links to file links in Org and vice versa,  Up: Top
 
 6 Installation
 **************
@@ -699,7 +699,7 @@ File: docSk7ppP.info,  Node: Installation,  Next: Sample configuration,  Prev: C
 * Manual installation::
 
 
-File: docSk7ppP.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: doc9ROXCJ.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 6.1 GNU ELPA package
 ====================
@@ -718,7 +718,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docSk7ppP.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: doc9ROXCJ.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 6.2 Manual installation
 =======================
@@ -745,7 +745,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docSk7ppP.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: doc9ROXCJ.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 7 Sample configuration
 **********************
@@ -771,7 +771,7 @@ File: docSk7ppP.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
          denote-org-dblock-insert-files-as-headings))
 
 
-File: docSk7ppP.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: doc9ROXCJ.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 8 Acknowledgements
 ******************
@@ -787,7 +787,7 @@ Ideas and user feedback
      GCamp6, Matt Nolan.
 
 
-File: docSk7ppP.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: doc9ROXCJ.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -810,7 +810,7 @@ Appendix A GNU Free Documentation License
      author and publisher a way to get credit for their work, while not
      being considered responsible for modifications made by others.
 
-     This License is a kind of “copyleft”, which means that derivative
+     This License is a kind of "copyleft", which means that derivative
      works of the document must themselves be free in the same sense.
      It complements the GNU General Public License, which is a copyleft
      license designed for free software.
@@ -831,18 +831,18 @@ Appendix A GNU Free Documentation License
      be distributed under the terms of this License.  Such a notice
      grants a world-wide, royalty-free license, unlimited in duration,
      to use that work under the conditions stated herein.  The
-     “Document”, below, refers to any such manual or work.  Any member
-     of the public is a licensee, and is addressed as “you”.  You accept
+     "Document", below, refers to any such manual or work.  Any member
+     of the public is a licensee, and is addressed as "you".  You accept
      the license if you copy, modify or distribute the work in a way
      requiring permission under copyright law.
 
-     A “Modified Version” of the Document means any work containing the
+     A "Modified Version" of the Document means any work containing the
      Document or a portion of it, either copied verbatim, or with
      modifications and/or translated into another language.
 
-     A “Secondary Section” is a named appendix or a front-matter section
+     A "Secondary Section" is a named appendix or a front-matter section
      of the Document that deals exclusively with the relationship of the
-     publishers or authors of the Document to the Document’s overall
+     publishers or authors of the Document to the Document's overall
      subject (or to related matters) and contains nothing that could
      fall directly within that overall subject.  (Thus, if the Document
      is in part a textbook of mathematics, a Secondary Section may not
@@ -851,7 +851,7 @@ Appendix A GNU Free Documentation License
      of legal, commercial, philosophical, ethical or political position
      regarding them.
 
-     The “Invariant Sections” are certain Secondary Sections whose
+     The "Invariant Sections" are certain Secondary Sections whose
      titles are designated, as being those of Invariant Sections, in the
      notice that says that the Document is released under this License.
      If a section does not fit the above definition of Secondary then it
@@ -859,13 +859,13 @@ Appendix A GNU Free Documentation License
      contain zero Invariant Sections.  If the Document does not identify
      any Invariant Sections then there are none.
 
-     The “Cover Texts” are certain short passages of text that are
+     The "Cover Texts" are certain short passages of text that are
      listed, as Front-Cover Texts or Back-Cover Texts, in the notice
      that says that the Document is released under this License.  A
      Front-Cover Text may be at most 5 words, and a Back-Cover Text may
      be at most 25 words.
 
-     A “Transparent” copy of the Document means a machine-readable copy,
+     A "Transparent" copy of the Document means a machine-readable copy,
      represented in a format whose specification is available to the
      general public, that is suitable for revising the document
      straightforwardly with generic text editors or (for images composed
@@ -877,7 +877,7 @@ Appendix A GNU Free Documentation License
      been arranged to thwart or discourage subsequent modification by
      readers is not Transparent.  An image format is not Transparent if
      used for any substantial amount of text.  A copy that is not
-     “Transparent” is called “Opaque”.
+     "Transparent" is called "Opaque".
 
      Examples of suitable formats for Transparent copies include plain
      ASCII without markup, Texinfo input format, LaTeX input format,
@@ -890,23 +890,23 @@ Appendix A GNU Free Documentation License
      the machine-generated HTML, PostScript or PDF produced by some word
      processors for output purposes only.
 
-     The “Title Page” means, for a printed book, the title page itself,
+     The "Title Page" means, for a printed book, the title page itself,
      plus such following pages as are needed to hold, legibly, the
      material this License requires to appear in the title page.  For
-     works in formats which do not have any title page as such, “Title
-     Page” means the text near the most prominent appearance of the
-     work’s title, preceding the beginning of the body of the text.
+     works in formats which do not have any title page as such, "Title
+     Page" means the text near the most prominent appearance of the
+     work's title, preceding the beginning of the body of the text.
 
-     The “publisher” means any person or entity that distributes copies
+     The "publisher" means any person or entity that distributes copies
      of the Document to the public.
 
-     A section “Entitled XYZ” means a named subunit of the Document
+     A section "Entitled XYZ" means a named subunit of the Document
      whose title either is precisely XYZ or contains XYZ in parentheses
      following text that translates XYZ in another language.  (Here XYZ
      stands for a specific section name mentioned below, such as
-     “Acknowledgements”, “Dedications”, “Endorsements”, or “History”.)
-     To “Preserve the Title” of such a section when you modify the
-     Document means that it remains a section “Entitled XYZ” according
+     "Acknowledgements", "Dedications", "Endorsements", or "History".)
+     To "Preserve the Title" of such a section when you modify the
+     Document means that it remains a section "Entitled XYZ" according
      to this definition.
 
      The Document may include Warranty Disclaimers next to the notice
@@ -936,7 +936,7 @@ Appendix A GNU Free Documentation License
 
      If you publish printed copies (or copies in media that commonly
      have printed covers) of the Document, numbering more than 100, and
-     the Document’s license notice requires Cover Texts, you must
+     the Document's license notice requires Cover Texts, you must
      enclose the copies in covers that carry, clearly and legibly, all
      these Cover Texts: Front-Cover Texts on the front cover, and
      Back-Cover Texts on the back cover.  Both covers must also clearly
@@ -1008,15 +1008,15 @@ Appendix A GNU Free Documentation License
           the Addendum below.
 
        G. Preserve in that license notice the full lists of Invariant
-          Sections and required Cover Texts given in the Document’s
+          Sections and required Cover Texts given in the Document's
           license notice.
 
        H. Include an unaltered copy of this License.
 
-       I. Preserve the section Entitled “History”, Preserve its Title,
+       I. Preserve the section Entitled "History", Preserve its Title,
           and add to it an item stating at least the title, year, new
           authors, and publisher of the Modified Version as given on the
-          Title Page.  If there is no section Entitled “History” in the
+          Title Page.  If there is no section Entitled "History" in the
           Document, create one stating the title, year, authors, and
           publisher of the Document as given on its Title Page, then add
           an item describing the Modified Version as stated in the
@@ -1026,12 +1026,12 @@ Appendix A GNU Free Documentation License
           for public access to a Transparent copy of the Document, and
           likewise the network locations given in the Document for
           previous versions it was based on.  These may be placed in the
-          “History” section.  You may omit a network location for a work
+          "History" section.  You may omit a network location for a work
           that was published at least four years before the Document
           itself, or if the original publisher of the version it refers
           to gives permission.
 
-       K. For any section Entitled “Acknowledgements” or “Dedications”,
+       K. For any section Entitled "Acknowledgements" or "Dedications",
           Preserve the Title of the section, and preserve in the section
           all the substance and tone of each of the contributor
           acknowledgements and/or dedications given therein.
@@ -1040,11 +1040,11 @@ Appendix A GNU Free Documentation License
           in their text and in their titles.  Section numbers or the
           equivalent are not considered part of the section titles.
 
-       M. Delete any section Entitled “Endorsements”.  Such a section
+       M. Delete any section Entitled "Endorsements".  Such a section
           may not be included in the Modified Version.
 
        N. Do not retitle any existing section to be Entitled
-          “Endorsements” or to conflict in title with any Invariant
+          "Endorsements" or to conflict in title with any Invariant
           Section.
 
        O. Preserve any Warranty Disclaimers.
@@ -1053,15 +1053,15 @@ Appendix A GNU Free Documentation License
      appendices that qualify as Secondary Sections and contain no
      material copied from the Document, you may at your option designate
      some or all of these sections as invariant.  To do this, add their
-     titles to the list of Invariant Sections in the Modified Version’s
+     titles to the list of Invariant Sections in the Modified Version's
      license notice.  These titles must be distinct from any other
      section titles.
 
-     You may add a section Entitled “Endorsements”, provided it contains
+     You may add a section Entitled "Endorsements", provided it contains
      nothing but endorsements of your Modified Version by various
-     parties—for example, statements of peer review or that the text has
-     been approved by an organization as the authoritative definition of
-     a standard.
+     parties--for example, statements of peer review or that the text
+     has been approved by an organization as the authoritative
+     definition of a standard.
 
      You may add a passage of up to five words as a Front-Cover Text,
      and a passage of up to 25 words as a Back-Cover Text, to the end of
@@ -1099,10 +1099,10 @@ Appendix A GNU Free Documentation License
      combined work.
 
      In the combination, you must combine any sections Entitled
-     “History” in the various original documents, forming one section
-     Entitled “History”; likewise combine any sections Entitled
-     “Acknowledgements”, and any sections Entitled “Dedications”.  You
-     must delete all sections Entitled “Endorsements.”
+     "History" in the various original documents, forming one section
+     Entitled "History"; likewise combine any sections Entitled
+     "Acknowledgements", and any sections Entitled "Dedications".  You
+     must delete all sections Entitled "Endorsements."
 
   6. COLLECTIONS OF DOCUMENTS
 
@@ -1123,16 +1123,16 @@ Appendix A GNU Free Documentation License
 
      A compilation of the Document or its derivatives with other
      separate and independent documents or works, in or on a volume of a
-     storage or distribution medium, is called an “aggregate” if the
+     storage or distribution medium, is called an "aggregate" if the
      copyright resulting from the compilation is not used to limit the
-     legal rights of the compilation’s users beyond what the individual
+     legal rights of the compilation's users beyond what the individual
      works permit.  When the Document is included in an aggregate, this
      License does not apply to the other works in the aggregate which
      are not themselves derivative works of the Document.
 
      If the Cover Text requirement of section 3 is applicable to these
      copies of the Document, then if the Document is less than one half
-     of the entire aggregate, the Document’s Cover Texts may be placed
+     of the entire aggregate, the Document's Cover Texts may be placed
      on covers that bracket the Document within the aggregate, or the
      electronic equivalent of covers if the Document is in electronic
      form.  Otherwise they must appear on printed covers that bracket
@@ -1154,8 +1154,8 @@ Appendix A GNU Free Documentation License
      this License or a notice or disclaimer, the original version will
      prevail.
 
-     If a section in the Document is Entitled “Acknowledgements”,
-     “Dedications”, or “History”, the requirement (section 4) to
+     If a section in the Document is Entitled "Acknowledgements",
+     "Dedications", or "History", the requirement (section 4) to
      Preserve its Title (section 1) will typically require changing the
      actual title.
 
@@ -1196,7 +1196,7 @@ Appendix A GNU Free Documentation License
 
      Each version of the License is given a distinguishing version
      number.  If the Document specifies that a particular numbered
-     version of this License “or any later version” applies to it, you
+     version of this License "or any later version" applies to it, you
      have the option of following the terms and conditions either of
      that specified version or of any later version that has been
      published (not as a draft) by the Free Software Foundation.  If the
@@ -1204,29 +1204,29 @@ Appendix A GNU Free Documentation License
      choose any version ever published (not as a draft) by the Free
      Software Foundation.  If the Document specifies that a proxy can
      decide which future versions of this License can be used, that
-     proxy’s public statement of acceptance of a version permanently
+     proxy's public statement of acceptance of a version permanently
      authorizes you to choose that version for the Document.
 
   11. RELICENSING
 
-     “Massive Multiauthor Collaboration Site” (or “MMC Site”) means any
+     "Massive Multiauthor Collaboration Site" (or "MMC Site") means any
      World Wide Web server that publishes copyrightable works and also
      provides prominent facilities for anybody to edit those works.  A
      public wiki that anybody can edit is an example of such a server.
-     A “Massive Multiauthor Collaboration” (or “MMC”) contained in the
+     A "Massive Multiauthor Collaboration" (or "MMC") contained in the
      site means any set of copyrightable works thus published on the MMC
      site.
 
-     “CC-BY-SA” means the Creative Commons Attribution-Share Alike 3.0
+     "CC-BY-SA" means the Creative Commons Attribution-Share Alike 3.0
      license published by Creative Commons Corporation, a not-for-profit
      corporation with a principal place of business in San Francisco,
      California, as well as future copyleft versions of that license
      published by that same organization.
 
-     “Incorporate” means to publish or republish a Document, in whole or
+     "Incorporate" means to publish or republish a Document, in whole or
      in part, as part of another Document.
 
-     An MMC is “eligible for relicensing” if it is licensed under this
+     An MMC is "eligible for relicensing" if it is licensed under this
      License, and if all works that were first published under this
      License somewhere other than this MMC, and subsequently
      incorporated in whole or in part into the MMC, (1) had no cover
@@ -1253,7 +1253,7 @@ notices just after the title page:
        Free Documentation License''.
 
    If you have Invariant Sections, Front-Cover Texts and Back-Cover
-Texts, replace the “with...Texts.” line with this:
+Texts, replace the "with...Texts." line with this:
 
          with the Invariant Sections being LIST THEIR TITLES, with
          the Front-Cover Texts being LIST, and with the Back-Cover Texts
@@ -1269,7 +1269,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docSk7ppP.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: doc9ROXCJ.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -1281,7 +1281,7 @@ B Indices
 * Concept index::
 
 
-File: docSk7ppP.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: doc9ROXCJ.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -1311,7 +1311,7 @@ B.1 Function index
                                                                (line  6)
 
 
-File: docSk7ppP.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: doc9ROXCJ.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -1323,7 +1323,7 @@ B.2 Variable index
                                                                (line 78)
 
 
-File: docSk7ppP.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: doc9ROXCJ.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -1338,29 +1338,29 @@ B.3 Concept index
 
 
 Tag Table:
-Node: Top862
+Node: Top864
 Node: Overview3447
 Node: Use Org dynamic blocks4080
-Node: Org dynamic blocks to insert links5816
-Node: The Org dynamic block to insert missing links only10455
-Node: The Org dynamic block to insert backlinks11594
-Node: Org dynamic block to insert file contents13383
-Node: Org dynamic block to insert Org files as headings19725
-Node: Org dynamic block to insert sequences24642
-Node: Create a note from the current Org subtree26111
-Node: Insert link to an Org file with a further pointer to a heading28745
-Node: Backlinks for Org headings30553
-Node: Convert denote links to file links in Org and vice versa31347
-Node: Installation33016
-Node: GNU ELPA package33251
-Node: Manual installation33816
-Node: Sample configuration34601
-Node: Acknowledgements35439
-Node: GNU Free Documentation License35830
-Node: Indices61191
-Node: Function index61367
-Node: Variable index63148
-Node: Concept index63476
+Node: Org dynamic blocks to insert links5806
+Node: The Org dynamic block to insert missing links only10441
+Node: The Org dynamic block to insert backlinks11580
+Node: Org dynamic block to insert file contents13369
+Node: Org dynamic block to insert Org files as headings19705
+Node: Org dynamic block to insert sequences24618
+Node: Create a note from the current Org subtree26083
+Node: Insert link to an Org file with a further pointer to a heading28707
+Node: Backlinks for Org headings30513
+Node: Convert denote links to file links in Org and vice versa31305
+Node: Installation32973
+Node: GNU ELPA package33208
+Node: Manual installation33773
+Node: Sample configuration34558
+Node: Acknowledgements35396
+Node: GNU Free Documentation License35787
+Node: Indices60947
+Node: Function index61123
+Node: Variable index62904
+Node: Concept index63232
 
 End Tag Table
 

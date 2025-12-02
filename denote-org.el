@@ -5,7 +5,7 @@
 ;; Author: Protesilaos Stavrou <info@protesilaos.com>
 ;; Maintainer: Protesilaos Stavrou <info@protesilaos.com>
 ;; URL: https://github.com/protesilaos/denote-org
-;; Version: 0.2.0
+;; Version: 0.2.1
 ;; Package-Requires: ((emacs "28.1") (denote "4.0.0"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -39,107 +39,6 @@
   :link '(info-link "(denote-org) top")
   :link '(url-link :tag "Denote homepage" "https://protesilaos.com/emacs/denote")
   :link '(url-link :tag "Denote Org homepage" "https://protesilaos.com/emacs/denote-org"))
-
-(defconst denote-org--common-extra-parameters
-  '((list :inline t
-         :not-regexp
-         (choice (const :tag "Do not exclude anything" nil)
-                 (string :tag "Regular expression to exclude")))
-   (list :inline t
-         :excluded-dirs-regexp
-         (choice (const :tag "Do not exclude directories" nil)
-                 (string :tag "Regular expression to exclude directories")))
-   (list :inline t
-         :sort-by-component
-         ;; TODO 2025-07-30: Check the other sort options we provide.
-         (choice (const :tag "Sort by title" title)
-                 (const :tag "Sort by signature" signature)
-                 (const :tag "Sort by keywords" keywords)))
-   (list :inline t
-         :reverse-sort
-         (choice (const :tag "No reverse sort" nil)
-                 (const :tag "Reverse sort" t)))
-   (list :inline t
-         :id-only
-         (choice (const :tag "Links with full description" nil)
-                 (const :tag "Links with just the identifier" t)))
-   (list :inline t
-         :include-date
-         (choice (const :tag "Do not show the date" nil)
-                 (const :tag "Show the date" t))))
-  "For use in the :type of `denote-org-extra-parameters-alist'.")
-
-(defcustom denote-org-extra-parameters-alist
-  '((denote-links :not-regexp nil :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :include-date nil)
-    (denote-missing-links :not-regexp nil :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :include-date nil)
-    (denote-backlinks :not-regexp nil :excluded-dirs-regexp nil :sort-by-component nil :reverse-sort nil :id-only nil :this-heading-only nil :include-date nil)
-    (denote-files :not-regexp nil :excluded-dirs-regexp nil :sort-by-component title :reverse-sort nil :no-front-matter nil :file-separator nil :add-links nil)
-    (denote-files-as-headings :not-regexp nil :excluded-dirs-regexp nil :sort-by-component title :reverse-sort nil :add-links nil))
-  "Extra parameters for each Denote Org dynamic block.
-Those are in addition to the mandatory parameters that will always be
-present in a dynamic block."
-  :type '(set
-          (list
-           (list :inline t
-                 (const denote-links)
-                 (set
-                  (list :inline t
-                        :not-regexp
-                        (choice (const :tag "Do not exclude anything" nil)
-                                (string :tag "Regular expression to exclude")))
-                  (list :inline t
-                        :excluded-dirs-regexp
-                        (choice (const :tag "Do not exclude directories" nil)
-                                (string :tag "Regular expression to exclude directories")))
-                  (list :inline t
-                        :sort-by-component
-                        ;; TODO 2025-07-30: Check the other sort options we provide.
-                        (choice (const :tag "Sort by title" title)
-                                (const :tag "Sort by signature" signature)
-                                (const :tag "Sort by keywords" keywords)))
-                  (list :inline t
-                        :reverse-sort
-                        (choice (const :tag "No reverse sort" nil)
-                                (const :tag "Reverse sort" t)))
-                  (list :inline t
-                        :id-only
-                        (choice (const :tag "Links with full description" nil)
-                                (const :tag "Links with just the identifier" t)))
-                  (list :inline t
-                        :include-date
-                        (choice (const :tag "Do not show the date" nil)
-                                (const :tag "Show the date" t)))))
-
-           (list :inline t
-                 (const denote-missing-links)
-                 (set
-                  (list :inline t
-                        :excluded-dirs-regexp
-                        (choice (const :tag "Do not exclude directories" nil)
-                                (string :tag "Regular expression to exclude directories")))
-                  (list :inline t
-                        :sort-by-component
-                        (choice (const :tag "Sort by title" title)
-                                (const :tag "Sort by title" signature)
-                                (const :tag "Sort by title" keywords)))
-                  (list :inline t
-                        :reverse-sort
-                        (choice (const :tag "No reverse sort" nil)
-                                (const :tag "Reverse sort" t)))
-                  (list :inline t
-                        :id-only
-                        (choice (const :tag "Links with full description" nil)
-                                (const :tag "Links with just the identifier" t)))
-                  (list :inline t
-                        :include-date
-                        (choice (const :tag "Do not show the date" nil)
-                                (const :tag "Show the date" t)))))))
-                             
-           ;; (const denote-missing-links)
-           ;; (const denote-backlinks)
-           ;; (const denote-files)
-           ;; (const denote-files-as-headings))
-  :group 'denote-org)
 
 ;;;; Link to file and heading
 
@@ -272,7 +171,7 @@ If CUSTOM_ID is present but `denote-org-store-link-to-heading' is not
 set to `context', then return a patternf of the following form:
 
     ID::#HEADING-ID"
-  (when-let* ((id (denote-retrieve-filename-identifier-with-error buffer-file-name)))
+  (when-let* ((id (denote-retrieve-filename-identifier buffer-file-name)))
     (let ((context-p (eq denote-org-store-link-to-heading 'context))
           (heading-id (org-entry-get (point) "CUSTOM_ID")))
       (cond
@@ -315,7 +214,7 @@ Also see `denote-org-link-to-heading'."
   (interactive)
   (when-let* ((heading-id (denote-org--get-file-id-and-heading-id-or-context))
               (heading-text (substring-no-properties (denote-link-ol-get-heading))))
-    (denote-link--prepare-backlinks heading-id ".*\\.org" (denote-org--get-backlinks-buffer-name heading-text))))
+    (denote-make-links-buffer heading-id ".*\\.org" (denote-org--get-backlinks-buffer-name heading-text))))
 
 ;;;; Extract subtree into its own note
 
@@ -711,7 +610,7 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
 ;;;;; Dynamic block to insert entire file contents
 
 (defun denote-org-escape-code-in-region (beg end)
-  "Like `org-escape-code-in-region' to escape only #+ by appending a zero width space to it.
+  "Like `org-escape-code-in-region' for #+ with zero width space prefix.
 Operate on the region between positions BEG and END."
   (save-excursion
     (goto-char end)
@@ -979,6 +878,14 @@ Used by `org-dblock-update' with PARAMS provided by the dynamic block."
 ;;;###autoload (autoload 'org-dblock-write:denote-sequence "denote-org")
 
 (with-eval-after-load 'denote-sequence
+  (declare-function denote-sequence-file-prompt "denote-sequence" (&optional prompt-text files-with-sequences))
+  (declare-function denote-sequence-depth-prompt "denote-sequence" (&optional prompt-text default-value))
+  (declare-function denote-sequence-get-all-files "denote-sequence" (&optional files as-sequence-path-pairs))
+  (declare-function denote-sequence-sort-files "denote-sequence" (files-with-sequence))
+  (declare-function denote-sequence-depth "denote-sequence" (sequence))
+  (declare-function denote-sequence-get-path "denote-sequence" (sequence))
+  (declare-function denote-sequence-get-relative "denote-sequence" (sequence type &optional files))
+
   (defun denote-org-dblock-insert-sequence (file depth)
     "Create Org dynamic block to list all chilren of FILE up to a relative DEPTH.
 DEPTH of the root FILE is 1. Using 2 lists children, 3 grandchildren, and so on."
@@ -1030,6 +937,12 @@ With optional FILES operate on them, otherwise use the return value of
           (push link-as-list-item links)))
       (dolist (link (nreverse links))
         (insert link))))
+
+  ;; NOTE 2025-11-30: I am surprised that I need to declare
+  ;; those---they are right above.  But it makes sense given that here
+  ;; we are in a `with-eval-after-load'.  Still strange though.
+  (declare-function denote-org--insert-sequence "denote-org" (files))
+  (declare-function denote-org-sequence--get-files-with-max-depth "denote-org" (max-depth &optional files))
 
   (defun org-dblock-write:denote-sequence (params)
     "Function to update `denote-sequence' Org Dynamic blocks.
