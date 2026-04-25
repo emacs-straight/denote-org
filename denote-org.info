@@ -38,10 +38,9 @@ Copyright (C) 2022-2026 Free Software Foundation, Inc.
      (a) The FSF’s Back-Cover Text is: “You have the freedom to copy and
      modify this GNU manual.”
 
-   This manual, written by Protesilaos Stavrou, describes the
-customization options for the Emacs package called ‘denote’ (or
-‘denote.el’), and provides every other piece of information pertinent to
-it.
+   This manual, written by Protesilaos, describes the customization
+options for the Emacs package called ‘denote’ (or ‘denote.el’), and
+provides every other piece of information pertinent to it.
 
    The documentation furnished herein corresponds to stable version
 0.2.0, released on 2025-10-17.  Any reference to a newer feature which
@@ -779,7 +778,7 @@ Denote Org is meant to be a collective effort.  Every bit of help
 matters.
 
 Author/maintainer
-     Protesilaos Stavrou.
+     Protesilaos.
 Contributions to code or the manual
      Peter Prevos, Vedang Manerikar.
 Ideas and user feedback
@@ -1337,28 +1336,28 @@ B.3 Concept index
 
 Tag Table:
 Node: Top863
-Node: Overview3446
-Node: Use Org dynamic blocks4080
-Node: Org dynamic blocks to insert links5807
-Node: The Org dynamic block to insert missing links only10443
-Node: The Org dynamic block to insert backlinks11583
-Node: Org dynamic block to insert file contents13373
-Node: Org dynamic block to insert Org files as headings19710
-Node: Org dynamic block to insert sequences24624
-Node: Create a note from the current Org subtree26090
-Node: Insert link to an Org file with a further pointer to a heading28715
-Node: Backlinks for Org headings30522
-Node: Convert denote links to file links in Org and vice versa31315
-Node: Installation32984
-Node: GNU ELPA package33220
-Node: Manual installation33786
-Node: Sample configuration34572
-Node: Acknowledgements35411
-Node: GNU Free Documentation License35838
-Node: Indices60999
-Node: Function index61176
-Node: Variable index62958
-Node: Concept index63287
+Node: Overview3438
+Node: Use Org dynamic blocks4072
+Node: Org dynamic blocks to insert links5799
+Node: The Org dynamic block to insert missing links only10435
+Node: The Org dynamic block to insert backlinks11575
+Node: Org dynamic block to insert file contents13365
+Node: Org dynamic block to insert Org files as headings19702
+Node: Org dynamic block to insert sequences24616
+Node: Create a note from the current Org subtree26082
+Node: Insert link to an Org file with a further pointer to a heading28707
+Node: Backlinks for Org headings30514
+Node: Convert denote links to file links in Org and vice versa31307
+Node: Installation32976
+Node: GNU ELPA package33212
+Node: Manual installation33778
+Node: Sample configuration34564
+Node: Acknowledgements35403
+Node: GNU Free Documentation License35822
+Node: Indices60983
+Node: Function index61160
+Node: Variable index62942
+Node: Concept index63271
 
 End Tag Table
 
